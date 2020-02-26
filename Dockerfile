@@ -57,6 +57,8 @@ RUN apt-get install -y --no-install-recommends \
         libsox-dev \
         apt-utils
 
+RUN rm -f /usr/bin/python && ln -s /usr/bin/python /usr/bin/python3
+
 # Install pip
 RUN wget https://bootstrap.pypa.io/get-pip.py && \
     python get-pip.py && \
@@ -64,12 +66,12 @@ RUN wget https://bootstrap.pypa.io/get-pip.py && \
 
 RUN /bin/bash -c "yes w | pip3 install --upgrade pip"   
 
-RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
-    /bin/bash ~/miniconda.sh -b -p /opt/conda && \
-    rm ~/miniconda.sh && \
-    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
-    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
-    echo "conda activate base" >> ~/.bashrc
+#RUN wget --quiet https://repo.continuum.io/miniconda/Miniconda3-latest-Linux-x86_64.sh -O ~/miniconda.sh && \
+#    /bin/bash ~/miniconda.sh -b -p /opt/conda && \
+#    rm ~/miniconda.sh && \
+#    ln -s /opt/conda/etc/profile.d/conda.sh /etc/profile.d/conda.sh && \
+#    echo ". /opt/conda/etc/profile.d/conda.sh" >> ~/.bashrc && \
+#    echo "conda activate base" >> ~/.bashrc
 
 # # Install openvivoToolKit
 # ARG DOWNLOAD_LINK=http://registrationcenter-download.intel.com/akdlm/irc_nas/16057/l_openvino_toolkit_p_2019.3.376.tgz
